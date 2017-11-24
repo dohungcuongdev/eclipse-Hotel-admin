@@ -12,21 +12,25 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 import database.MongoDBConnector;
-import database.MongoDBConnector;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.springframework.stereotype.Repository;
+
 import model.hotel.HotelRoom;
 
 /**
  *
  * @author Do Hung Cuong
  */
+
+@Repository
 public class RoomDAOImpl extends HotelItemDAOImp implements RoomDAO {
 
-    private final Gson gson = new Gson();
+    private Gson gson = new Gson();
 
     public RoomDAOImpl() {
         try {

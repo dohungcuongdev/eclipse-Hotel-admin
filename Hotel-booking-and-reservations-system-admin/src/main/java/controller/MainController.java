@@ -8,6 +8,8 @@ package controller;
 import java.io.IOException;
 import model.user.Administrator;
 import statics.AppData;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +24,7 @@ import model.hotel.HotelRoom;
 import model.hotel.HotelService;
 import model.user.Customer;
 import model.user.tracking.FollowUsers;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -29,31 +32,51 @@ import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 import services.HotelItemService;
-import services.impl.HotelItemServiceImpl;
 import services.UserService;
-import services.impl.UserServiceImpl;
-import services.impl.ApplicationServiceImpl;
 import services.ApplicationService;
+
+
+import services.TestService;
 
 /**
  *
  * @author Do Hung Cuong
  */
+
 @Controller
 @RequestMapping(value = "/")
 public class MainController {
+	
+	@Autowired
+	private TestService testService;
 
-    private final UserService userService = new UserServiceImpl();
-    private final HotelItemService hotelItemService = new HotelItemServiceImpl();
-    private final ApplicationService appService = new ApplicationServiceImpl();
 
+    //index
+    @RequestMapping(value = "test", method = RequestMethod.GET)
+    public String test(ModelMap model) {
+        model.put("test", testService.getResource("database"));
+        initialize(model);
+        List<FollowUsers> list = userService.getListFollowUsers();
+        model.put("listFollowUsers", list);
+
+        model.put("mapFollowUsers", userService.getFollowUsersMap(list));
+        model.put("mapFollowUsersIP", userService.getFollowUsersMapByIP(list));
+        return "test";
+    }
+
+	@Autowired
+    private UserService userService;
+	
+	@Autowired
+    private HotelItemService hotelItemService;
+	
+	@Autowired
+    private ApplicationService appService;
+    
     //index
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String index(ModelMap model) {
         initialize(model);
-        List<FollowUsers> list = userService.getListFollowUsers();
-        model.put("jsonchart", userService.getFollowUsersCountry(list));
-        model.put("listchartData", userService.getListFollowUsersChartData(list));
         return "index";
     }
 
@@ -224,12 +247,16 @@ public class MainController {
         model.put("mapFollowUsersIP", userService.getFollowUsersMapByIP(list));
         return "follow-users";
     }
+    
+    @RequestMapping(value = "view-statistics", method = RequestMethod.GET)
+    public String viewStatistics(ModelMap model) {
+        initialize(model);
+        return "view-statistics";
+    }
 
     @RequestMapping(value = "follow-user-chart", method = RequestMethod.GET)
     public String followUserChart(ModelMap model) {
         initialize(model);
-        List<FollowUsers> list = userService.getListFollowUsers();
-        model.put("jsonchart", userService.getFollowUsersCountry(list));
         return "follow-user-chart";
     }
 
@@ -255,7 +282,7 @@ public class MainController {
     @RequestMapping(value = "user/{username}", method = RequestMethod.GET)
     public String singleUser(@PathVariable(value = "username") String username, ModelMap model) {
         initialize(model);
-        Customer cus = userService.getCustomerByName(username);
+        Customer cus = userService.getCustomerByUsername(username);
         cus.setActivity(userService.getAllActivityByUserName(username));
         model.put("customer", cus);
         return "user";
@@ -329,6 +356,7 @@ public class MainController {
                 csvWriter.write(r, header);
             }
         } catch (IOException e) {
+        	e.printStackTrace();
         }
     }
 

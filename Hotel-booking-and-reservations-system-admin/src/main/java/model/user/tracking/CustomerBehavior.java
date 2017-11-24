@@ -14,106 +14,44 @@ import model.user.Customer;
  */
 public class CustomerBehavior {
 
-    private Customer cus;
-    private List roomBooked;
-    private List roomCanceled;
-    private List dateVisited;
-    private List feedbackroom;
-    private double avgfeedbackRoom;
-    private double avgFeedbackSV;
+	private Customer cus;
+	private List dateVisited;
+	private ActionTracking action;
 
-    public Customer getCus() {
-        return cus;
-    }
+	public Customer getCus() {
+		return cus;
+	}
 
-    public void setCus(Customer cus) {
-        this.cus = cus;
-    }
+	public void setCus(Customer cus) {
+		this.cus = cus;
+	}
 
-    public List getRoomBooked() {
-        return roomBooked;
-    }
+	public List getDateVisited() {
+		return dateVisited;
+	}
 
-    public void setRoomBooked(List roomBooked) {
-        this.roomBooked = roomBooked;
-    }
+	public void setDateVisited(List dateVisited) {
+		this.dateVisited = dateVisited;
+	}
 
-    public List getRoomCanceled() {
-        return roomCanceled;
-    }
+	public ActionTracking getAction() {
+		return action;
+	}
 
-    public void setRoomCanceled(List roomCanceled) {
-        this.roomCanceled = roomCanceled;
-    }
+	public void setAction(ActionTracking action) {
+		this.action = action;
+	}
 
-    public List getDateVisited() {
-        return dateVisited;
-    }
+	public CustomerBehavior(Customer cus, List dateVisited, ActionTracking action) {
+		super();
+		this.cus = cus;
+		this.dateVisited = dateVisited;
+		this.action = action;
+	}
 
-    public void setDateVisited(List dateVisited) {
-        this.dateVisited = dateVisited;
-    }
+	@Override
+	public String toString() {
+		return "CustomerBehavior [cus=" + cus + ", dateVisited=" + dateVisited + ", action=" + action + "]";
+	}
 
-    public List getFeedbackroom() {
-        return feedbackroom;
-    }
-
-    public void setFeedbackroom(List feedbackroom) {
-        this.feedbackroom = feedbackroom;
-    }
-
-    public double getAvgfeedbackRoom() {
-        return avgfeedbackRoom;
-    }
-
-    public void setAvgfeedbackRoom(double avgfeedbackRoom) {
-        this.avgfeedbackRoom = avgfeedbackRoom;
-    }
-
-    public double getAvgFeedbackSV() {
-        return avgFeedbackSV;
-    }
-
-    public void setAvgFeedbackSV(double avgFeedbackSV) {
-        this.avgFeedbackSV = avgFeedbackSV;
-    }
-
-    public CustomerBehavior(Customer cus, List roomBooked, List roomCanceled, List dateVisited) {
-        this.cus = cus;
-        this.roomBooked = roomBooked;
-        this.roomCanceled = roomCanceled;
-        this.dateVisited = dateVisited;
-    }
-
-    public CustomerBehavior(Customer cus, List roomBooked, List roomCanceled, List dateVisited, double avgfeedbackRoom, double avgFeedbackSV) {
-        this.cus = cus;
-        this.roomBooked = roomBooked;
-        this.roomCanceled = roomCanceled;
-        this.dateVisited = dateVisited;
-        this.avgfeedbackRoom = avgfeedbackRoom;
-        this.avgFeedbackSV = avgFeedbackSV;
-    }
-
-    public CustomerBehavior(Customer cus, List roomBooked, List roomCanceled, List dateVisited, List feedbackroom, double avgfeedbackRoom, double avgFeedbackSV) {
-        this.cus = cus;
-        this.roomBooked = roomBooked;
-        this.roomCanceled = roomCanceled;
-        this.dateVisited = dateVisited;
-        this.feedbackroom = feedbackroom;
-        this.avgfeedbackRoom = avgfeedbackRoom;
-        this.avgFeedbackSV = avgFeedbackSV;
-    }
-    
-    public boolean isReturned() {
-        return true;
-    }
-    
-    public boolean isNew() {
-        return false;
-    }
-
-    @Override
-    public String toString() {
-        return "CustomerDataCollection{" + "cus=" + cus + ", roomBooked=" + roomBooked + ", roomCanceled=" + roomCanceled + ", dateVisited=" + dateVisited + ", feedbackroom=" + feedbackroom + ", avgfeedbackRoom=" + avgfeedbackRoom + ", avgFeedbackSV=" + avgFeedbackSV + '}';
-    }
 }

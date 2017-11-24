@@ -16,13 +16,19 @@ import database.MongoDBConnector;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.springframework.stereotype.Repository;
+
 import model.user.Administrator;
-import statics.provider.ImageEditor;
+
+import static statics.provider.ImageEditor.editImagebyUserName;
 
 /**
  *
  * @author Do Hung Cuong
  */
+
+@Repository
 public class AdminDAOImpl implements AdminDAO {
 
     private final Gson gson = new Gson();
@@ -67,6 +73,6 @@ public class AdminDAOImpl implements AdminDAO {
 
     @Override
     public void editProfileImg(String username, String img) {
-        ImageEditor.editImagebyUserName(collection, username, img);
+        editImagebyUserName(collection, username, img);
     }
 }

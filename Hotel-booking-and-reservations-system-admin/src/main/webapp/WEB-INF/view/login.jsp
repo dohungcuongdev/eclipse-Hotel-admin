@@ -6,8 +6,8 @@
 
 <html>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/loginstyles.css">
-    <script src="${pageContext.request.contextPath}/resources/loginscripts.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/custom/loginstyles.css">
+    <script src="${pageContext.request.contextPath}/resources/custom/loginscripts.js" type="text/javascript"></script>
 
     <body>
 
@@ -17,7 +17,7 @@
 
     <div id="id01" class="modal">
 
-        <form:form class="modal-content animate" method="post" commandName="loginbean" action="${pageContext.request.contextPath}/check-login.htm">
+        <form:form class="modal-content animate" method="post" commandName="loginbean" action="${pageContext.request.contextPath}/check-login.html">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
                 <img src="${pageContext.request.contextPath}/resources/img/users/login_avatar.png" alt="Avatar" class="avatar">

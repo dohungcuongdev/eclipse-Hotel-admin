@@ -21,4 +21,8 @@ public interface RestaurantDAO {
     public List<HotelService> getRelatedHotelServices(String type);
     
     public void updateService(HotelService service);
+
+	public void editImage(String name, String img, String img2);
+
+	public void deleteItem(String name);
 }

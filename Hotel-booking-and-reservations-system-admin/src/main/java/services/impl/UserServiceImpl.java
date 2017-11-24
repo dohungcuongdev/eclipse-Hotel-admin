@@ -5,13 +5,13 @@
  */
 package services.impl;
 
-import daos.impl.ActivityDAOImpl;
-import daos.impl.AdminDAOImpl;
-import daos.impl.CustomerDAOImpl;
-import daos.impl.UserDAOImpl;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import model.user.tracking.ActionTracking;
 import model.user.tracking.Activity;
 import model.user.tracking.ChartData;
 import model.user.tracking.CustomerBehavior;
@@ -30,12 +30,21 @@ import daos.ActivityDAO;
  *
  * @author HUNGCUONG
  */
+
+@Service
 public class UserServiceImpl implements UserService {
     
-    private final UserDAO userDAO = new UserDAOImpl();
-    private final AdminDAO adminDAO = new AdminDAOImpl();
-    private final CustomerDAO customerDAO = new CustomerDAOImpl();
-    private final ActivityDAO activityDAO = new ActivityDAOImpl();
+	@Autowired
+    private UserDAO userDAO;
+	
+	@Autowired
+    private AdminDAO adminDAO;
+	
+	@Autowired
+    private CustomerDAO customerDAO;
+	
+	@Autowired
+    private ActivityDAO activityDAO;
 
     @Override
     public List<FollowUsers> getListFollowUsers() {
@@ -68,8 +77,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Customer getCustomerByName(String username) {
-        return customerDAO.getCustomerByName(username);
+    public Customer getCustomerByUsername(String username) {
+        return customerDAO.getCustomerByUsername(username);
     }
 
     @Override
@@ -171,5 +180,10 @@ public class UserServiceImpl implements UserService {
     public List<ChartData> getListFollowUsersChartData(List<FollowUsers> list) {
         return userDAO.getListFollowUsersChartData(list);
     }
+
+	@Override
+	public ActionTracking getActionTrackingByUsername(String username) {
+		return customerDAO.getActionTrackingByUsername(username);
+	}
     
 }

@@ -19,15 +19,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.user.tracking.Activity;
 import org.bson.types.ObjectId;
-import statics.provider.DateTimeCalculator;
+import org.springframework.stereotype.Repository;
+
+import static statics.provider.DateTimeCalculator.getDateTime;
 
 /**
  *
  * @author Do Hung Cuong
  */
+
+@Repository
 public class ActivityDAOImpl implements ActivityDAO {
 
-    private final Gson gson = new Gson();
+	private final Gson gson = new Gson();
+	
     private DBCollection collection;
 
     {
@@ -44,7 +49,7 @@ public class ActivityDAOImpl implements ActivityDAO {
             DBObject obj = cursor.next();
             Activity act = gson.fromJson(obj + "", Activity.class);
             act.setId(obj.get("_id") + "");
-            act.setTime(DateTimeCalculator.getDateTime(obj.get("created_at") + ""));
+            act.setTime(getDateTime(obj.get("created_at") + ""));
             activitylist.add(act);
         }
         activitylist.sort(new Activity.CompareDateTime());
@@ -74,7 +79,7 @@ public class ActivityDAOImpl implements ActivityDAO {
             DBObject obj = cursor.next();
             Activity act = gson.fromJson(obj + "", Activity.class);
             act.setId(obj.get("_id") + "");
-            act.setTime(DateTimeCalculator.getDateTime(obj.get("created_at") + ""));
+            act.setTime(getDateTime(obj.get("created_at") + ""));
             return act;
         }
         return null;

@@ -1,4 +1,3 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="common/sub-content.jspf"%>
 
@@ -25,7 +24,7 @@
                                         <i class="fa fa-times"></i>
                                     </button> 
                                     <strong class="tr-p" 
-                                            onclick="location.href = '${pageContext.request.contextPath}/notification/${activity.id}.htm'"> ${activity.time}! 
+                                            onclick="location.href = '${pageContext.request.contextPath}/notification/${activity.id}.html'"> ${activity.time}! 
                                     </strong>
                                     <br>UserName: ${activity.username}
                                     <br>Sent content: ${activity.content}
@@ -37,7 +36,7 @@
                                         <i class="fa fa-times"></i>
                                     </button> 
                                     <strong class="tr-p" 
-                                            onclick="location.href = '${pageContext.request.contextPath}/notification/${activity.id}.htm'"> ${activity.time}! 
+                                            onclick="location.href = '${pageContext.request.contextPath}/notification/${activity.id}.html'"> ${activity.time}! 
                                     </strong>
                                     <br>UserName: ${activity.username}
                                     <br>Received content: ${activity.content}
@@ -49,7 +48,7 @@
                                         <i class="fa fa-times"></i>
                                     </button> 
                                     <strong class="tr-p" 
-                                            onclick="location.href = '${pageContext.request.contextPath}/reply ${activity.name}/${activity.id}.htm'"> ${activity.time}! 
+                                            onclick="location.href = '${pageContext.request.contextPath}/reply ${activity.name}/${activity.id}.html'"> ${activity.time}! 
                                     </strong>
                                     <br>UserName: ${activity.username}
                                     <br>Received content: ${activity.content}
@@ -61,7 +60,7 @@
                                         <i class="fa fa-times"></i>
                                     </button> 
                                     <strong class="tr-p" 
-                                            onclick="location.href = '${pageContext.request.contextPath}/notification/${activity.id}.htm'"> ${activity.time}! 
+                                            onclick="location.href = '${pageContext.request.contextPath}/notification/${activity.id}.html'"> ${activity.time}! 
                                     </strong>
                                     <br>${activity.username}
                                     <br>Sent content: ${activity.content}

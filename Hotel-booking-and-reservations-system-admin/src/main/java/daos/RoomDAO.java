@@ -22,4 +22,8 @@ public interface RoomDAO {
 
     public void updateRoom(HotelRoom room);
 
+	public void editImage(String name, String img, String img2);
+
+	public void deleteItem(String name);
+
 }

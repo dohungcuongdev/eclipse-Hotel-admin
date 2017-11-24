@@ -1,7 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="common/sub-content.jspf"%>
-
-<!-- Main row -->
 <%@ include file="common/single-room.jspf"%>
 
 
@@ -9,7 +6,7 @@
     <div class="col-lg-6">
         <section class="panel">
             <div class="panel-body">
-                <form action="${pageContext.request.contextPath}/room-img-edited/${room.name}.htm" method="post" enctype="multipart/form-data">
+                <form action="${pageContext.request.contextPath}/room-img-edited/${room.name}.html" method="post" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <br><label style="font-size: 17px; color:blue"><strong>Change Image!</strong></label>
@@ -38,7 +35,7 @@
                     <p class="help-block">The image of the room will be changed after submit.</p>
 
                     <button type="submit" class="btn btn-info">Submit</button>
-                    <button onclick="location.href = '${pageContext.request.contextPath}/edit-room/${room.name}.htm'"type="reset" class="btn btn-danger">Cancel</button>
+                    <button onclick="location.href = '${pageContext.request.contextPath}/edit-room/${room.name}.html'"type="reset" class="btn btn-danger">Cancel</button>
                 </form>
                 <label style="margin-top: 10px">*Suggestion</label>
                 <ul>
@@ -67,7 +64,7 @@
                 Change Information!
             </header>
             <div class="panel-body">
-                <form:form method="post" commandName="roomEdit" action="${pageContext.request.contextPath}/room-edited.htm">
+                <form:form method="post" commandName="roomEdit" action="${pageContext.request.contextPath}/room-edited.html">
                     <div class="form-group">
                         <label>Room Name</label>
                     </div>
@@ -152,7 +149,7 @@
                     <form:input type="hidden" value="${room.img2}" path="img2"/>
                     <p class="help-block">Your room will be changed after submit.</p>
                     <button style="margin-top: 3.5px" type="submit" class="btn btn-info">Submit</button>
-                    <button style="margin-top: 3.5px" onclick="location.href = '${pageContext.request.contextPath}/edit-room/${room.name}.htm'" type="reset" class="btn btn-danger">Cancel</button>
+                    <button style="margin-top: 3.5px" onclick="location.href = '${pageContext.request.contextPath}/edit-room/${room.name}.html'" type="reset" class="btn btn-danger">Cancel</button>
                 </form:form>
             </div>
         </section>
@@ -173,7 +170,7 @@
         showBookedInfor();
         var r = '${editResult}';
         checkeditresult(r);
-        window.history.pushState("string", "Hotel Admin", "${pageContext.request.contextPath}/edit-room/${room.name}.htm");
+        window.history.pushState("string", "Hotel Admin", "${pageContext.request.contextPath}/edit-room/${room.name}.html");
 
     };
 

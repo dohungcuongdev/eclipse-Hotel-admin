@@ -1,4 +1,3 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="common/sub-content.jspf"%>
 
@@ -7,19 +6,18 @@
         <div class="panel">
             <header class="panel-heading">
                 Page Access Statistics with User IP: ${ip}
-
             </header>
-            <div class="panel-body table-responsive" id="page-access-box">
-                <div class="box-tools m-b-15">
-                    <div class="input-group">
-                        <input type="text" name="table_search" class="form-control input-sm pull-right" 
-                               style="width: 150px;" id="page-access-ip-input" onkeyup="searchInputTable('page-access-ip-input', 'page-access-ip-table')" 
-                               placeholder="Search for page access.." title="Type in a page access"/>
-                        <div class="input-group-btn">
-                            <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                        </div>
+            <div class="box-tools m-b-15">
+                <div class="input-group">
+                    <input type="text" name="table_search" class="form-control input-sm pull-right" 
+                           style="width: 150px;" id="page-access-ip-input" onkeyup="searchInputTable('page-access-ip-input', 'page-access-ip-table')" 
+                           placeholder="Search for page access.." title="Type in a page access"/>
+                    <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
+            </div>
+            <div class="panel-body table-responsive" id="page-access-box">
                 <table id="page-access-ip-table">
                     <tr>
                         <th class="tr-p" onclick="sortNum(0, 'page-access-ip-table')">No.</th>
@@ -43,5 +41,4 @@
         <!-- /.box -->
     </div>
 </div>
-<%@ include file="common/follow-user.jspf"%>
 <%@ include file="common/footer.jspf"%>

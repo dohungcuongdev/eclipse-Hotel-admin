@@ -1,4 +1,3 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="common/sub-content.jspf"%>
 
 
@@ -17,14 +16,14 @@
                 <div class="form-group"><strong style="margin-left: 10px">Phone Number</strong>: ${ad.phone}</div>
                 <div class="form-group"><strong style="margin-left: 10px">Email</strong>: ${ad.username}</div>
                 <div class="form-group"><strong style="margin-left: 10px">Birthday</strong>: ${ad.birthday}</div>
-                <form action="${pageContext.request.contextPath}/profile-img-edited.htm" enctype="multipart/form-data" method="post">
+                <form action="${pageContext.request.contextPath}/profile-img-edited.html" enctype="multipart/form-data" method="post">
                     <div class="form-group">
                         <input type="file" name="img" value="${ad.img}" onchange="readURL(this, '#blah', 200, 210);"/>
                     </div>
                     <button type="submit" class="btn btn-info">Change your image</button>
                     <button type="submit" class="btn btn-danger">Cancel</button>
                 </form>
-                <form:form method="post" commandName="adminEdit" action="${pageContext.request.contextPath}/changePassword.htm">
+                <form:form method="post" commandName="adminEdit" action="${pageContext.request.contextPath}/changePassword.html">
                     <div class="form-group">
                         <br><label style="font-size: 17px; color:blue; margin-top: 24px"><strong>Change password!</strong></label>
                     </div>
@@ -54,7 +53,7 @@
                 Change personal information!
             </header>
             <div class="panel-body">
-                <form:form method="post" commandName="adminEdit" action="${pageContext.request.contextPath}/profile-edited.htm">
+                <form:form method="post" commandName="adminEdit" action="${pageContext.request.contextPath}/profile-edited.html">
                     <div class="form-group">
                         <label>Name</label>
                     </div>
@@ -87,7 +86,7 @@
                     <form:input type="hidden" value="${ad.password}" path="password"/>
                     <p class="help-block">Your profile will be changed after submit.</p>
                     <button style="margin-top: 3.5px" type="submit" class="btn btn-info">Submit</button>
-                    <button style="margin-top: 3.5px" type="reset" onclick="location.href = '${pageContext.request.contextPath}/profile.htm'" class="btn btn-danger">Cancel</button>
+                    <button style="margin-top: 3.5px" type="reset" onclick="location.href = '${pageContext.request.contextPath}/profile.html'" class="btn btn-danger">Cancel</button>
                     <div class="form-group">
                         <label style="margin-top: 10px">*Suggestion</label>
                         <ul>
@@ -112,7 +111,7 @@
     window.onload = function () { //first loat page
         var r = '${editResult}';
         checkeditresult(r);
-        window.history.pushState("string", "Hotel Admin", "${pageContext.request.contextPath}/profile.htm");
+        window.history.pushState("string", "Hotel Admin", "${pageContext.request.contextPath}/profile.html");
         $("#gender").val('${ad.gender}');
     };
 </script>

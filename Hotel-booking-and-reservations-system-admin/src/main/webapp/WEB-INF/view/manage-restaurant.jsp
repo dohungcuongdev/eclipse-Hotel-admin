@@ -1,7 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="common/sub-content.jspf"%>
-
 
 <div class="row">
     <div class="col-xs-12">
@@ -51,8 +49,8 @@
                             <td>${service.price}</td>
                             <td>${service.quantity}</td>
                             <td>${service.note}</td>
-                            <td><button onclick="location.href = '${pageContext.request.contextPath}/service/${service.name}.htm'" class="btn btn-default btn-xs"><i class="fa fa-check"></i></button></td>
-                            <td><button onclick="location.href = '${pageContext.request.contextPath}/edit-service/${service.name}.htm'" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button></td>
+                            <td><button onclick="location.href = '${pageContext.request.contextPath}/service/${service.name}.html'" class="btn btn-default btn-xs"><i class="fa fa-check"></i></button></td>
+                            <td><button onclick="location.href = '${pageContext.request.contextPath}/edit-service/${service.name}.html'" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button></td>
                             <td><button onclick ="deleteService('${service.name}')" class="btn btn-default btn-xs"><i class="fa fa-times"></i></button></td>
                         </tr>
                     </c:forEach>
@@ -70,7 +68,7 @@
         var r = '${deleteResult}';
         if (r !== undefined && r === "success") {
             swal("Deleted!", "The service has been deleted.", "success");
-            window.history.pushState("string", "Hotel Admin", "${pageContext.request.contextPath}/manage-restaurant.htm");
+            window.history.pushState("string", "Hotel Admin", "${pageContext.request.contextPath}/manage-restaurant.html");
         }
     };
 </script>

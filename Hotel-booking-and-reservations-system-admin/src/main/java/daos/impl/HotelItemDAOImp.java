@@ -6,22 +6,28 @@
 package daos.impl;
 
 import daos.HotelItemDAO;
+
+import org.springframework.stereotype.Repository;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
-import statics.provider.ImageEditor;
+
+import static statics.provider.ImageEditor.editImagebyName;
 
 /**
  *
  * @author Do Hung Cuong
  */
+
+@Repository
 public class HotelItemDAOImp implements HotelItemDAO {
 
     protected DBCollection collection;
 
     @Override
     public void editImage(String name, String img, String img2) {
-        ImageEditor.editImagebyName(collection, name, "img", img);
-        ImageEditor.editImagebyName(collection, name, "img2", img2);
+        editImagebyName(collection, name, "img", img);
+        editImagebyName(collection, name, "img2", img2);
     }
     
     @Override

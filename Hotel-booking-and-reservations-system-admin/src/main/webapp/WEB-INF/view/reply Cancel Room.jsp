@@ -46,7 +46,7 @@
                         <img src="${pageContext.request.contextPath}/resources/img/users/${ad.img}" alt="Avatar" class="img-circle" width="48" height="48">
                     </a>
                     <div class="media-body">
-                        <a href="${pageContext.request.contextPath}/profile.htm">
+                        <a href="${pageContext.request.contextPath}/profile.html">
                             <strong>${ad.name}</strong>
                         </a>
                         <p>
@@ -62,7 +62,7 @@
 
             <div class="panel-body">
                 <div class="twt-area">
-                    <form action="${pageContext.request.contextPath}/send-mail.htm" method="post" accept-charset="UTF-8">
+                    <form action="${pageContext.request.contextPath}/send-mail.html" method="post" accept-charset="UTF-8">
                         <textarea name="message" class="form-control" name="profile-tweet" placeholder="Write something on reply.." rows="7"></textarea>
                         <input type="hidden" name="activity-id" value="${activity.id}"/>
                         <input type="hidden" name="user-email" value="${activity.username}"/>
@@ -86,7 +86,7 @@
             </header>
             <div class="panel-body">
                 <div class="twt-area">
-                    <form action="${pageContext.request.contextPath}/send-mail.htm" method="post" accept-charset="UTF-8">
+                    <form action="${pageContext.request.contextPath}/send-mail.html" method="post" accept-charset="UTF-8">
                         <textarea class="form-control" name="message" placeholder="Write something on reply.." rows="14">Dear ${activity.fullname}, &#13;&#13;Thank you for your interest in our hotel. This email is to acknowledge the receipt of your email and thank you for sending us your request. We will carefully review your request. Should your request match our ability, we will contact you soon. In other cases, we will keep the request for future opportunities.&#13;&#13;With best regards, .&#13Hùng Cường, Hotel Owner.&#13&#13...&#13Holiday Crown.&#13Address: 24 Street 7, Bình An Ward, District 2.&#13Phone Number: 0908998923.&#13Hotline: (08).37404802.
                         </textarea>
                         <input type="hidden" name="activity-id" value="${activity.id}"/>
@@ -112,7 +112,7 @@
             </header>
             <div class="panel-body">
                 <div class="twt-area">
-                    <form action="${pageContext.request.contextPath}/send-mail.htm" method="post" accept-charset="UTF-8">
+                    <form action="${pageContext.request.contextPath}/send-mail.html" method="post" accept-charset="UTF-8">
                         <textarea class="form-control" name="message" placeholder="Write something on reply.." rows="14">Dear ${activity.fullname}, &#13;&#13;Here is your cancel room request information:&#13; - ${activity.details}.&#13; - ${activity.note}.&#13;&#13;Thank you for your interest in our hotel. We are affair to notify that your request is not accepted because we cannot arrange this room for other customers. We are sorry for this inconvenience. Thank you and having a nice day!&#13;&#13;With best regards, .&#13Hùng Cường, Hotel Owner.&#13&#13...&#13Holiday Crown.&#13Address: 24 Street 7, Bình An Ward, District 2.&#13Phone Number: 0908998923.&#13Hotline: (08).37404802.
                         </textarea>
                         <input type="hidden" name="activity-id" value="${activity.id}"/>

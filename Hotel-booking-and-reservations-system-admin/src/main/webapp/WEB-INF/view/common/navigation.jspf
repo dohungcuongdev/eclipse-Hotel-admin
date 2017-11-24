@@ -1,5 +1,5 @@
 <div class="row" style="margin-bottom:5px;">
-    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-users.htm'">
+    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-users.html'">
         <div class="sm-st clearfix">
             <span class="sm-st-icon st-red"><i class="fa fa-user"></i></span>
             <div class="sm-st-info">
@@ -7,7 +7,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/message.htm'">
+    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/message.html'">
         <div class="sm-st clearfix">
             <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
             <div class="sm-st-info">
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-rooms.htm'">
+    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-rooms.html'">
         <div class="sm-st clearfix">
             <span class="sm-st-icon st-blue"><i class="fa fa-building-o"></i></span>
             <div class="sm-st-info">
@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-restaurant.htm'">
+    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-restaurant.html'">
         <div class="sm-st clearfix">
             <span class="sm-st-icon st-green"><i class="fa fa-glass"></i></span>
             <div class="sm-st-info">

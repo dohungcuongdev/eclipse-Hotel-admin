@@ -1,16 +1,12 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="common/sub-content.jspf"%>
-
-<!-- Main row -->
 <%@ include file="common/single-service.jspf"%>
-
 
 
 <div class="row">
     <div class="col-lg-6">
         <section class="panel">
             <div class="panel-body">
-                <form action="${pageContext.request.contextPath}/service-img-edited/${service.name}.htm" method="post" enctype="multipart/form-data">
+                <form action="${pageContext.request.contextPath}/service-img-edited/${service.name}.html" method="post" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <br><label style="font-size: 17px; color:blue"><strong>Change Image!</strong></label>
@@ -39,7 +35,7 @@
                     <p class="help-block">The image of the service will be changed after submit.</p>
 
                     <button type="submit" class="btn btn-info">Submit</button>
-                    <button type="reset" onclick="location.href = '${pageContext.request.contextPath}/edit-service/${service.name}.htm'" class="btn btn-danger">Cancel</button>
+                    <button type="reset" onclick="location.href = '${pageContext.request.contextPath}/edit-service/${service.name}.html'" class="btn btn-danger">Cancel</button>
                 </form>
             </div>
         </section>
@@ -50,7 +46,7 @@
                 Change Information!
             </header>
             <div class="panel-body">
-                <form:form method="post" commandName="serviceEdit" action="${pageContext.request.contextPath}/service-edited.htm">
+                <form:form method="post" commandName="serviceEdit" action="${pageContext.request.contextPath}/service-edited.html">
                     <div class="form-group">
                         <label>Name</label>
                     </div>
@@ -107,7 +103,7 @@
                     <form:input type="hidden" value="${service.img2}" path="img2"/>
                     <p class="help-block">Your item will be changed after submit.</p>
                     <button style="margin-top: 3.5px" type="submit" class="btn btn-info">Submit</button>
-                    <button style="margin-top: 3.5px" type="reset" onclick="location.href = '${pageContext.request.contextPath}/edit-service/${service.name}.htm'" class="btn btn-danger">Cancel</button>
+                    <button style="margin-top: 3.5px" type="reset" onclick="location.href = '${pageContext.request.contextPath}/edit-service/${service.name}.html'" class="btn btn-danger">Cancel</button>
                     <div class="form-group">
                         <label style="margin-top: 10px">*Suggestion</label>
                         <ul>
@@ -127,10 +123,6 @@
 
 
 <%@ include file="common/related-service.jspf"%>
-
-
-
-
 <%@ include file="common/footer.jspf"%>
 
 <script type="text/javascript">
@@ -140,6 +132,6 @@
         $('#details').val('${service.details}');
         var r = '${editResult}'
         checkeditresult(r);
-        window.history.pushState("string", "Hotel Admin", "${pageContext.request.contextPath}/edit-service/${service.name}.htm");
+        window.history.pushState("string", "Hotel Admin", "${pageContext.request.contextPath}/edit-service/${service.name}.html");
     };
 </script>

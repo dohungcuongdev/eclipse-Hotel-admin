@@ -7,6 +7,8 @@ package services;
 
 import java.util.List;
 import java.util.Map;
+
+import model.user.tracking.ActionTracking;
 import model.user.tracking.Activity;
 import model.user.tracking.ChartData;
 import model.user.tracking.CustomerBehavior;
@@ -36,13 +38,15 @@ public interface UserService {
     
     public List<ChartData> getListFollowUsersChartData(List<FollowUsers> list);
     
-    public Customer getCustomerByName(String username);
+    public Customer getCustomerByUsername(String username);
 
     public List<Customer> getAllCustomers();
 
     public boolean checkexsitCustomer(String username);
      
     public List<String> getDateVisit(String username);
+    
+    public ActionTracking getActionTrackingByUsername(String username);
     
     public List<DataCollection> getListRoomBooked(String username);
     

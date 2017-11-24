@@ -1,6 +1,6 @@
 <%@ include file="head.jspf"%>
 <header class="header">
-    <a href="${pageContext.request.contextPath}/index.htm" class="logo">
+    <a href="${pageContext.request.contextPath}/index.html" class="logo">
         Hotel Admin
     </a>
     <!-- Header Navbar: style can be found in header.less -->
@@ -32,7 +32,7 @@
                                         <!-- start message -->
                                         <c:choose>
                                             <c:when test="${newNoti.click.equals('contact') || newNoti.click.equals('reservation')}"> 
-                                                <a href="${pageContext.request.contextPath}/notification/${newNoti.id}.htm">
+                                                <a href="${pageContext.request.contextPath}/notification/${newNoti.id}.html">
                                                     <div class="pull-left">
                                                         <img src="${pageContext.request.contextPath}/resources/img/users/guest.jpg" class="img-circle" alt="User Image" />
                                                     </div>
@@ -44,7 +44,7 @@
                                                 </a>
                                             </c:when>
                                             <c:otherwise>
-                                                <a href="${pageContext.request.contextPath}/notification/${newNoti.id}.htm">
+                                                <a href="${pageContext.request.contextPath}/notification/${newNoti.id}.html">
                                                     <div class="pull-left">
                                                         <img src="${pageContext.request.contextPath}/resources/img/users/membership.png" class="img-circle" alt="User Image" />
                                                     </div>
@@ -61,7 +61,7 @@
                                 <!-- end message -->
                             </ul>
                         </li>
-                        <li class="footer"><a href="${pageContext.request.contextPath}/message.htm#all-notifications">See All Notifications</a></li>
+                        <li class="footer"><a href="${pageContext.request.contextPath}/message.html#all-notifications">See All Notifications</a></li>
                     </ul>
                 </li>
                 <li class="dropdown messages-menu">
@@ -79,7 +79,7 @@
                                         <!-- start message -->
                                         <c:choose>
                                             <c:when test="${message.click.equals('contact') || message.click.equals('reservation')}"> 
-                                                <a href="${pageContext.request.contextPath}/notification/${message.id}.htm">
+                                                <a href="${pageContext.request.contextPath}/notification/${message.id}.html">
                                                     <div class="pull-left">
                                                         <img src="${pageContext.request.contextPath}/resources/img/users/guest.jpg" class="img-circle" alt="User Image" />
                                                     </div>
@@ -91,7 +91,7 @@
                                                 </a>
                                             </c:when>
                                             <c:otherwise>
-                                                <a href="${pageContext.request.contextPath}/notification/${message.id}.htm">
+                                                <a href="${pageContext.request.contextPath}/notification/${message.id}.html">
                                                     <div class="pull-left">
                                                         <img src="${pageContext.request.contextPath}/resources/img/users/membership.png" class="img-circle" alt="User Image" />
                                                     </div>
@@ -109,7 +109,7 @@
                             </ul>
                         </li>
                         <li class="footer">
-                            <a href="${pageContext.request.contextPath}/message.htm#all-message">View All Messages</a></li>
+                            <a href="${pageContext.request.contextPath}/message.html#all-message">View All Messages</a></li>
                 </li>
             </ul>
             </li>
@@ -123,31 +123,31 @@
                     <li class="dropdown-header text-center">Account</li>
 
                     <li>
-                        <a href="${pageContext.request.contextPath}/message.htm#all-notifications">
+                        <a href="${pageContext.request.contextPath}/message.html#all-notifications">
                             <i class="fa fa-bell fa-fw pull-right"></i>
                             <span class="badge badge-success pull-right">${newNotifications.size()}</span> Notifications</a>
-                        <a href="${pageContext.request.contextPath}/message.htm#all-message">
+                        <a href="${pageContext.request.contextPath}/message.html#all-message">
                             <i class="fa fa-envelope-o fa-fw pull-right"></i>
                             <span class="badge badge-danger pull-right">${listactivily.size()}</span> Messages</a>
-                        <a href="${pageContext.request.contextPath}/fqa.htm""><i class="fa fa-question fa-fw pull-right"></i> 
+                        <a href="${pageContext.request.contextPath}/fqa.html""><i class="fa fa-question fa-fw pull-right"></i> 
                             <span class="badge pull-right">8</span> FAQ</a>
                     </li>
 
                     <li class="divider"></li>
 
                     <li>
-                        <a href="#">
-                            <i class="fa fa-user fa-fw pull-right"></i> Profile
+                        <a data-toggle="modal" href="${pageContext.request.contextPath}/profile.html">
+                            <i class="fa fa-cog fa-fw pull-right"></i> Profile
                         </a>
-                        <a data-toggle="modal" href="#modal-user-settings">
-                            <i class="fa fa-cog fa-fw pull-right"></i> Settings
+                        <a href="${pageContext.request.contextPath}/manage-users.html">
+                            <i class="fa fa-user fa-fw pull-right"></i>Manage Users
                         </a>
                     </li>
 
                     <li class="divider"></li>
 
                     <li>
-                        <a href="#"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                        <a href="${pageContext.request.contextPath}/login.html"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
                     </li>
                 </ul>
             </li>

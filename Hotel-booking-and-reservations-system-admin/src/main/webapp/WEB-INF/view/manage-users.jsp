@@ -44,7 +44,7 @@
                             <td><span class="label label-success">${user.phone}</span></td>
                             <td>${user.address}</td>
                             <td>${user.dateVisit.size()}</td>
-                            <td><button onclick="location.href = '${pageContext.request.contextPath}/user/${user.username}.htm'" class="btn btn-default btn-xs"><i class="fa fa-check"></i></button></td>
+                            <td><button onclick="location.href = '${pageContext.request.contextPath}/user/${user.username}.html'" class="btn btn-default btn-xs"><i class="fa fa-check"></i></button></td>
                             <td><button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button></td>
                             <td><button class="btn btn-default btn-xs"><i class="fa fa-ban"></i></button></td>
                         </tr>
@@ -95,11 +95,11 @@
                             <td>${loop.index + 1}</td>
                             <td>${user.cus.username}</td>
                             <td>${user.dateVisited.size()}</td>
-                            <td>${user.roomBooked.size()}</td>
-                            <td>${user.roomCanceled.size()}</td>
-                            <td>${user.avgfeedbackRoom} ★</td>
-                            <td>${user.avgFeedbackSV} ★</td>
-                            <td><button onclick="location.href = '${pageContext.request.contextPath}/customer/${user.cus.username}.htm'" class="btn btn-default btn-xs"><i class="fa fa-check"></i></button></td>
+                            <td>${user.action.roomBooked.size()}</td>
+                            <td>${user.action.roomCanceled.size()}</td>
+                            <td>${user.action.avgfeedbackRoom} ★</td>
+                            <td>${user.action.avgFeedbackSV} ★</td>
+                            <td><button onclick="location.href = '${pageContext.request.contextPath}/customer/${user.cus.username}.html'" class="btn btn-default btn-xs"><i class="fa fa-check"></i></button></td>
                             <td><button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button></td>
                             <td><button class="btn btn-default btn-xs"><i class="fa fa-ban"></i></button></td>
                         </tr>

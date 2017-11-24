@@ -6,32 +6,38 @@
 package services.impl;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import services.ApplicationService;
+
 import statics.provider.FileUploader;
 import statics.provider.EmailSender;
 import statics.provider.StringUtils;
-import services.ApplicationService;
 
 /**
  *
  * @author HUNGCUONG
  */
+
+@Service
 public class ApplicationServiceImpl implements ApplicationService {
 
-    @Override
-    public String uploadfile(CommonsMultipartFile commonsMultipartFiles, HttpServletRequest request, ModelMap model, String itemType) {
-        return FileUploader.uploadfile(commonsMultipartFiles, request, model, itemType);
-    }
+	@Override
+	public String uploadfile(CommonsMultipartFile commonsMultipartFiles, HttpServletRequest request, ModelMap model,
+			String itemType) {
+		return FileUploader.uploadfile(commonsMultipartFiles, request, model, itemType);
+	}
 
-    @Override
-    public String sendEmail(String message, String sendto, String subject) {
-        return EmailSender.sendEmail(message, sendto, subject);
-    }
+	@Override
+	public String sendEmail(String message, String sendto, String subject) {
+		return EmailSender.sendEmail(message, sendto, subject);
+	}
 
-    @Override
-    public String removeAccent(String originalString) {
-        return StringUtils.removeAccent(originalString);
-    }
-    
+	@Override
+	public String removeAccent(String originalString) {
+		return StringUtils.removeAccent(originalString);
+	}
+
 }

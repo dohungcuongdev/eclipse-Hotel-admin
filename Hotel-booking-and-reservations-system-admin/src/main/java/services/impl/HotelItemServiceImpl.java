@@ -5,9 +5,13 @@
  */
 package services.impl;
 
-import daos.impl.RoomDAOImpl;
-import daos.impl.RestaurantDAOImpl;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import daos.RestaurantDAO;
+import daos.RoomDAO;
 import model.hotel.HotelRoom;
 import model.hotel.HotelService;
 import services.HotelItemService;
@@ -16,10 +20,15 @@ import services.HotelItemService;
  *
  * @author HUNGCUONG
  */
+
+@Service
 public class HotelItemServiceImpl implements HotelItemService {
     
-    private final RoomDAOImpl roomDAO = new RoomDAOImpl();
-    private final RestaurantDAOImpl serviceDAO = new RestaurantDAOImpl();
+	@Autowired
+    private RoomDAO roomDAO;
+	
+	@Autowired
+    private RestaurantDAO serviceDAO;
 
     @Override
     public HotelRoom getRoomByName(String name) {

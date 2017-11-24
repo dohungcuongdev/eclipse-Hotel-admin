@@ -6,6 +6,8 @@
 package daos;
 
 import java.util.List;
+
+import model.user.tracking.ActionTracking;
 import model.user.tracking.CustomerBehavior;
 import model.user.tracking.DataCollection;
 import model.user.tracking.FeedbackRoom;
@@ -17,13 +19,15 @@ import model.user.Customer;
  */
 public interface CustomerDAO {
 
-    public Customer getCustomerByName(String username);
+    public Customer getCustomerByUsername(String username);
 
     public List<Customer> getAllCustomers();
 
     public boolean checkexsitCustomer(String username);
      
     public List<String> getDateVisit(String username);
+    
+    public ActionTracking getActionTrackingByUsername(String username);
     
     public List<DataCollection> getListRoomBooked(String username);
     
