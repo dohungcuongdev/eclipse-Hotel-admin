@@ -26,7 +26,7 @@
                         <p>${activity.content}</P>
                     </div>
                 </c:if>
-                <c:if test="${activity.click.equals('feedback')}"> 
+                <c:if test="${activity.click.equals('feedback') || activity.name.equals('Feedback Room')}"> 
                     <div class="alert alert-info">
                         <button data-dismiss="alert" class="close close-sm" type="button"></button>
                         <strong>${activity.time}!</strong>

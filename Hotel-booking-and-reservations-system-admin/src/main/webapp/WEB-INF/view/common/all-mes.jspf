@@ -24,7 +24,7 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="activity" items="${listactivily}">
-							<c:if test="${activity.click.equals('feedback')}">
+							<c:if test="${activity.click.equals('feedback') || activity.name.equals('Feedback Room')}">
 								<div class="alert alert-block alert-info">
 									<button data-dismiss="alert" class="close close-sm"
 										type="button">

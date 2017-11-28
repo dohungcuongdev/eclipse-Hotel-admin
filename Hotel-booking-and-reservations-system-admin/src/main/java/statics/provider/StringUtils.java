@@ -76,5 +76,16 @@ public class StringUtils {
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("");
     }
+    
+
+    //lowercase first character of string
+    public static String lowerFirstChar(String varname) {
+        return Character.toLowerCase(varname.charAt(0)) + varname.substring(1);
+    }
+
+    //uppercase first character of string
+    public static String upperFirstChar(String varname) {
+        return Character.toUpperCase(varname.charAt(0)) + varname.substring(1);
+    }
 
 }

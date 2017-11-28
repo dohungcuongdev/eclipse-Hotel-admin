@@ -3,7 +3,6 @@ package daos.impl;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.ParseException;
@@ -14,7 +13,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +21,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 
 import daos.TestDAO;
-import model.user.tracking.FollowUsers;
 
 @Repository
 @Configuration

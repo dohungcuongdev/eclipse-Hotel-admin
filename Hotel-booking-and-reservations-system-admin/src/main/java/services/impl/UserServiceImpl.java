@@ -185,5 +185,10 @@ public class UserServiceImpl implements UserService {
 	public ActionTracking getActionTrackingByUsername(String username) {
 		return customerDAO.getActionTrackingByUsername(username);
 	}
+
+	@Override
+	public Map getPageAccessChartData(List<FollowUsers> list) {
+		return userDAO.getPageAccessChartData(list);
+	}
     
 }

@@ -54,14 +54,13 @@ public class MainController {
     //index
     @RequestMapping(value = "test", method = RequestMethod.GET)
     public String test(ModelMap model) {
-        model.put("test", testService.getResource("database"));
         initialize(model);
         List<FollowUsers> list = userService.getListFollowUsers();
         model.put("listFollowUsers", list);
 
-        model.put("mapFollowUsers", userService.getFollowUsersMap(list));
+        model.put("mapFollowUsers", userService.getPageAccessChartData(list));
         model.put("mapFollowUsersIP", userService.getFollowUsersMapByIP(list));
-        return "test";
+        return "follow-users";
     }
 
 	@Autowired

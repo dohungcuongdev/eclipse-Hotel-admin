@@ -34,6 +34,8 @@ public interface UserService {
     
     public Map getMapFollowUsersCountry(List<FollowUsers> list);
     
+    public Map getPageAccessChartData(List<FollowUsers> list);
+    
     public String getFollowUsersCountry(List<FollowUsers> list); 
     
     public List<ChartData> getListFollowUsersChartData(List<FollowUsers> list);

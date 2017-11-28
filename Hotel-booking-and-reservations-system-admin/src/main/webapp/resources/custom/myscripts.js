@@ -61,7 +61,7 @@ $('#manage-services-box').slimScroll({
     BorderRadius: '5px'
 });
 $('#manage-rooms-box').slimScroll({
-    height: '400px',
+    height: '500px',
     size: '5px',
     BorderRadius: '5px'
 });

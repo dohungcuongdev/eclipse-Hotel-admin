@@ -27,6 +27,7 @@ import model.user.tracking.FollowUsers;
 import static statics.provider.DateTimeCalculator.formatMillisecond;
 import static statics.provider.DateTimeCalculator.getDateTime;
 import static statics.provider.MathCalculator.round;
+import static statics.provider.StringUtils.upperFirstChar;
 
 /**
  *
@@ -83,6 +84,54 @@ public class UserDAOImpl implements UserDAO {
 		Map m = new HashMap();
 		for (int i = 0; i < list.size(); i++) {
 			String key = list.get(i).getPage_access();
+			if (m.containsKey(key)) {
+				m.replace(key, Integer.parseInt(m.get(key) + "") + 1);
+			} else {
+				m.put(key, 1);
+			}
+		}
+		return m;
+	}
+	
+	@Override
+	public Map getPageAccessChartData(List<FollowUsers> list) {
+		Map m = new HashMap();
+		for (int i = 0; i < list.size(); i++) {
+			String key = list.get(i).getPage_access();
+			if(key.contains("/rooms-tariff")) {
+				key = "View Room";
+			}
+			else if(key.contains("book room")) {
+				key = "Book Room";
+			}
+			else if(key.contains("cancel room")) {
+				key = "Cancel Room";
+			}
+			else if(key.contains("filter in rooms") || key.contains("/room-details") || key.contains("search in rooms") || key.contains("click image in rooms")) {
+				key = "Find Rooms";
+			}
+			else if(key.contains("filter in restaurant") || key.contains("/hotel-services") || key.contains("search in restaurant") || key.contains("click image in restaurant")) {
+				key = "View Restaurant";
+			}
+			else if(key.contains("feedback")) {
+				key = "Send Feedback";
+			}
+			else if(key.contains("click link /")) {
+				key = "View " + upperFirstChar(key.substring(12)) + " Page";
+			}
+			else if(key.contains("login")) {
+				key = "Login";
+			}
+			else if(key.contains("sign up")) {
+				key = "Sign Up";
+			}
+			else if(key.contains("register")) {
+				key = "Register";
+			}
+			else if(key.contains("/logout")) {
+				key = "Logout";
+			}
+			
 			if (m.containsKey(key)) {
 				m.replace(key, Integer.parseInt(m.get(key) + "") + 1);
 			} else {
