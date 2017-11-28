@@ -40,7 +40,7 @@
         <script src="${pageContext.request.contextPath}/resources/alert/sweetalert-dev.js"></script> 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/alert/sweetalert.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+		<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
         <!-- Resources -->
         <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
         <script src="https://www.amcharts.com/lib/3/serial.js"></script>

@@ -47,7 +47,7 @@
 
             <li>
                 <a href="${pageContext.request.contextPath}/manage-rooms.html">
-                    <i class="fa fa-tasks"></i> <span>Rooms & Bookings</span>
+                    <i class="fa fa-bed"></i> <span>Rooms & Bookings</span>
                 </a>
             </li>
 
@@ -60,6 +60,12 @@
             <li>
                 <a href="${pageContext.request.contextPath}/follow-users.html">
                     <i class="fa fa-globe"></i> <span>Follow Users</span>
+                </a>
+            </li>
+            
+           	<li>
+                <a href="${pageContext.request.contextPath}/view-statistics.html">
+                    <i class="fa fa-tasks"></i> <span>View Statistics</span>
                 </a>
             </li>
             

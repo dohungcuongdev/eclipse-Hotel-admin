@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="panel">
-            <header class="panel-heading"> Follow Users</header>
+            <header class="panel-heading">Follow Users</header>
             <div class="box-tools m-b-15">
                 <div class="input-group">
                     <input type="text" name="table_search" class="form-control input-sm pull-right" 
@@ -13,8 +13,8 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-body table-responsive" id="page-access-box">
-                <table id="follow-user-table" ng-app="follow-users" ng-controller="folowUserCtrl">
+            <div class="panel-body table-responsive" id="follow-user-box">
+                <table class="table-responsive" id="follow-user-table" ng-app="follow-users" ng-controller="folowUserCtrl">
                    	<tr>
 						<th class="tr-p" ng-click="sortNum(followUserData)">No.</th>
 						<th class="tr-p" ng-click="sortIP(followUserData)">User IP Address</th>
@@ -32,18 +32,15 @@
 							<td><a href = "http://whatismyipaddress.com/ip/{{d.external_ip_address}}">{{ d.external_ip_address }}</a></td>
 							<td>{{ d.country }}</td>
 							<td>{{ d.username }}</td>
-							<td>{{ d.created_at }}</td>
+							<td>{{ d.created_at | date:'medium'}}</td>
 							<td>{{ d.page_access }}</td>
 							<td>{{ d.duration | secondsToTime }}</td>
 	                    </tr>
                 	</tbody>
                 </table>
             </div>
-             <div class="col-md-12 text-center">
-      				<ul class="pagination pagination-lg pager" id="myPager"></ul>
-      		</div>
             <br><center><button class="btn btn-danger" onclick="location.href = '${pageContext.request.contextPath}/downloadCSV.html'">
-                    <b>Download CSV</b> <i class="fa fa-download"></i></button></center>
+                    <b>Download CSV</b> <i class="fa fa-download"></i></button></center><br>
             <!-- /.box-body -->
         </div>
         <!-- /.box -->
