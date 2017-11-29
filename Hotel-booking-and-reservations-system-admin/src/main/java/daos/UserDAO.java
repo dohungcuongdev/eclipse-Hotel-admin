@@ -30,4 +30,8 @@ public interface UserDAO {
     public List<ChartData> getListFollowUsersChartData(List<FollowUsers> list);
 
     public Map getPageAccessChartData(List<FollowUsers> list);
+
+    public Map getPageAccessChartDataByIP(String ipaddress, List<FollowUsers> list);
+    
+    public String getJSONPageAccess(Map m);
 }

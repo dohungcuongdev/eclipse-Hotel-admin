@@ -1,5 +1,5 @@
 <%@ include file="common/sub-content.jspf"%>
-<%@ include file="common/chart.jspf"%>
+<%@ include file="common/pie-chart.jspf"%>
 
 <%@ include file="common/all-mes.jspf"%>
 

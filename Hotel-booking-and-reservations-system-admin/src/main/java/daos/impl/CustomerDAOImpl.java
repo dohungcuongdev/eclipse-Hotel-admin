@@ -25,7 +25,6 @@ import com.mongodb.DBObject;
 
 import daos.ActivityDAO;
 import daos.CustomerDAO;
-import daos.TestDAO;
 import daos.UserDAO;
 import database.MongoDBConnector;
 import model.user.Customer;
@@ -34,6 +33,7 @@ import model.user.tracking.Activity;
 import model.user.tracking.CustomerBehavior;
 import model.user.tracking.DataCollection;
 import model.user.tracking.FeedbackRoom;
+import statics.AppData;
 
 /**
  *
@@ -51,12 +51,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Autowired
 	private UserDAO userDAO ;
 	
-	@Autowired
-	private TestDAO testDAO ;
-	
 	private DBCollection collection;
 
-	{
+	public CustomerDAOImpl() {
 		try {
 			collection = MongoDBConnector.createConnection("customers");
 		} catch (UnknownHostException ex) {
@@ -105,9 +102,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				.map((fu) -> fu.getDate_access().toString().substring(0, 10)
 						+ fu.getDate_access().toString().substring(19, 28))
 				.forEach((dateVisit) -> {
-					if (dateVisits.isEmpty()) {
-						dateVisits.add(dateVisit);
-					} else if (!dateVisits.contains(dateVisit)) {
+					if (dateVisits.isEmpty() || !dateVisits.contains(dateVisit)) {
 						dateVisits.add(dateVisit);
 					}
 				});
@@ -123,13 +118,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 		int starFB = 0, countFB = 0;
 		List<Activity> activities = activityDAO.getAllActivityByUserName(username);
 		for (Activity act : activities) {
-			if (act.getName().equals("Book Room")) {
+			if (act.getName().equals(AppData.ACTIVITY[0])) {
 				roombooked.add(new DataCollection(act.getTime() + "", act.getDetails().substring(12)));
 			}
-			if (act.getName().equals("Cancel Room")) {
+			if (act.getName().equals(AppData.ACTIVITY[1])) {
 				roomcanceled.add(new DataCollection(act.getTime() + "", act.getDetails().substring(20)));
 			}
-			if (act.getName().equals("Feedback Room")) {
+			if (act.getName().equals(AppData.ACTIVITY[2])) {
 				String date = act.getTime() + "";
 				String room = act.getNote().substring(12, 15);
 				int star = act.getNote().charAt(21) - 48;
@@ -139,7 +134,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				starFBR += act.getNote().charAt(21) - 48;
 				++countFBR;
 			}
-			if (act.getName().equals("Feedback")) {
+			if (act.getName().equals(AppData.ACTIVITY[3])) {
 				starFB += act.getNote().charAt(12) - 48;
 				++countFB;
 			}
@@ -154,7 +149,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public List<DataCollection> getListRoomBooked(String username) {
 		List<DataCollection> roombooked = new ArrayList<>();
-		activityDAO.getAllActivityByUserName(username).stream().filter((act) -> (act.getName().equals("Book Room")))
+		activityDAO.getAllActivityByUserName(username).stream().filter((act) -> (act.getName().equals(AppData.ACTIVITY[0])))
 				.forEach((act) -> {
 					roombooked.add(new DataCollection(act.getTime() + "", act.getDetails().substring(12)));
 				});
@@ -164,7 +159,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public List<DataCollection> getListRoomCanceled(String username) {
 		List<DataCollection> roomcanceled = new ArrayList<>();
-		activityDAO.getAllActivityByUserName(username).stream().filter((act) -> (act.getName().equals("Cancel Room")))
+		activityDAO.getAllActivityByUserName(username).stream().filter((act) -> (act.getName().equals(AppData.ACTIVITY[1])))
 				.forEach((act) -> {
 					roomcanceled.add(new DataCollection(act.getTime() + "", act.getDetails().substring(20)));
 				});
@@ -175,18 +170,19 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public double getAvgStarRoomFeedback(String username) {
 		int star = 0, count = 0;
 		for (Activity act : activityDAO.getAllActivityByUserName(username)) {
-			if (act.getName().equals("Feedback Room")) {
+			if (act.getName().equals(AppData.ACTIVITY[2])) {
 				star += act.getNote().charAt(21) - 48;
 				++count;
 			}
 		}
+		if(count == 0) return 0;
 		return round(star * 1.0 / count, 2);
 	}
 
 	public int getTotalStarRoomFeedback(String username) {
 		int star = 0;
 		star = activityDAO.getAllActivityByUserName(username).stream()
-				.filter((act) -> (act.getName().equals("Feedback Room"))).map((act) -> act.getNote().charAt(21) - 48)
+				.filter((act) -> (act.getName().equals(AppData.ACTIVITY[2]))).map((act) -> act.getNote().charAt(21) - 48)
 				.reduce(star, Integer::sum);
 		return star;
 	}
@@ -195,18 +191,19 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public double getAvgStarFeedback(String username) {
 		int star = 0, count = 0;
 		for (Activity act : activityDAO.getAllActivityByUserName(username)) {
-			if (act.getName().equals("Feedback")) {
+			if (act.getName().equals(AppData.ACTIVITY[3])) {
 				star += act.getNote().charAt(12) - 48;
 				++count;
 			}
 		}
+		if(count == 0) return 0;
 		return round(star * 1.0 / count, 2);
 	}
 
 	public double getTotalStarFeedback(String username) {
 		int star = 0;
 		star = activityDAO.getAllActivityByUserName(username).stream()
-				.filter((act) -> (act.getName().equals("Feedback"))).map((act) -> act.getNote().charAt(12) - 48)
+				.filter((act) -> (act.getName().equals(AppData.ACTIVITY[3]))).map((act) -> act.getNote().charAt(12) - 48)
 				.reduce(star, Integer::sum);
 		return star;
 	}
@@ -230,7 +227,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public List<FeedbackRoom> getListFeedbackRoom(String username) {
 		List<FeedbackRoom> fbr = new ArrayList<>();
-		activityDAO.getAllActivityByUserName(username).stream().filter((act) -> (act.getName().equals("Feedback Room")))
+		activityDAO.getAllActivityByUserName(username).stream().filter((act) -> (act.getName().equals(AppData.ACTIVITY[2])))
 				.forEach((act) -> {
 					String date = act.getTime() + "";
 					String room = act.getNote().substring(12, 15);

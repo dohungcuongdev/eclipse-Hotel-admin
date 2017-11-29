@@ -24,12 +24,12 @@ public class AppData {
     public static final int DATABASE_PORT = 27017;
     
     public static final String EMAIL = "cuongvip1295@gmail.com";
-    public static final String EMAILPASSWORD = "Cuong@123";
+    public static final String AUTHENTICATION = "Cuong@123";
     public static final String MAIL_HOST = "smtp.gmail.com";
     public static final String MAIL_SMTP_PORT = "587";
     public static final String MAIL_SMTP_AUTH = "true";
     public static final String MAIL_SMTP_STARTTLS_ENABLE = "true";
-    public static final String MAIL_SMTP_SSS_TRUST = "smtp.gmail.com";
+    public static final String MAIL_SMTP_SSS_TRUST = MAIL_HOST;
     public static final String AUTH_FAIL = "Authentication failed";
     public static final String WRONG_EMAIL_ADDRESS = "Wrong email address";
     public static final String ERROR_MESSAGE = "ErrorMessage";
@@ -43,7 +43,7 @@ public class AppData {
     public static final String WRONG_CHECKIN_CHECKOUT = "The checkin date and checkout date is not accepted!";
     public static final String ABLE_TO_EDIT = "success";
       
-    public static final String EDITSUCCESS = "success";
+    public static final String EDITSUCCESS = ABLE_TO_EDIT;
     public static final String ERROR = "error";
     
     public static final String HEADERKEY = "Content-Disposition";
@@ -63,11 +63,21 @@ public class AppData {
     public static final String WRONG_TYPE_SERVICE = "Type must be food, drink, fruit or ice-cream!";
     public static final String INVALID_SERVICE_TYPE = "Serve type must be breafast, lunch, dinner or snack!";
  
+    public static final String ACTIVITY[] = {"Book Room","Cancel Room","Feedback Room","Feedback"};
+    
+    public static final String REUSE_STRING[] = {"activity", "room", "service", "edit-room", "edit-service", "editResult", "reply Book Room", "reply Cancel Room"}; 
+    
     public static Administrator admin;
     public static List<Activity> newNotifications;
     
+    private AppData() {}
+    
     static {
         refreshAll();
+    }
+    
+    public static void setNewAdmin(Administrator ad) {
+    	admin = ad;
     }
 
     public static void refreshAll() {

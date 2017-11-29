@@ -70,8 +70,14 @@
             </li>
             
             <li>
-                <a href="${pageContext.request.contextPath}/follow-user-chart.html">
-                    <i class="fa fa-bar-chart"></i> <span>View Chart</span>
+                <a href="${pageContext.request.contextPath}/country-chart.html">
+                    <i class="fa fa-pie-chart"></i> <span>View Country Chart</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="${pageContext.request.contextPath}/page-access-chart.html">
+                    <i class="fa fa-bar-chart"></i> <span>Page Access Chart</span>
                 </a>
             </li>
 

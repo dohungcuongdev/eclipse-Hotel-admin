@@ -30,7 +30,7 @@ public class EmailSender {
         }
         String from = AppData.EMAIL;
         String login = AppData.EMAIL;
-        String password = AppData.EMAILPASSWORD;
+        String authentication = AppData.AUTHENTICATION;
         try {
             Properties props = new Properties();
             props.setProperty("mail.host", AppData.MAIL_HOST);
@@ -38,7 +38,7 @@ public class EmailSender {
             props.setProperty("mail.smtp.auth", AppData.MAIL_SMTP_AUTH);
             props.setProperty("mail.smtp.starttls.enable", AppData.MAIL_SMTP_STARTTLS_ENABLE);
             props.put("mail.smtp.ssl.trust", AppData.MAIL_SMTP_SSS_TRUST);
-            Authenticator auth = new SMTPAuthenticator(login, password);
+            Authenticator auth = new SMTPAuthenticator(login, authentication);
             Session session = Session.getInstance(props, auth);
             MimeMessage msg = new MimeMessage(session);
             msg.setText(message);
@@ -55,6 +55,8 @@ public class EmailSender {
         }
         return AppData.EMAIL_SENT;
     }
+    
+    private EmailSender() {}
 
     private static class SMTPAuthenticator extends Authenticator {
 

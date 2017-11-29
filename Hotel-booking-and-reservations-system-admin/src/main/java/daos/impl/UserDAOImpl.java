@@ -40,7 +40,7 @@ public class UserDAOImpl implements UserDAO {
 	private final Gson gson = new Gson();
 	private DBCollection collection;
 
-	{
+	public UserDAOImpl() {
 		try {
 			collection = MongoDBConnector.createConnection("follow-users");
 		} catch (UnknownHostException ex) {
@@ -92,46 +92,12 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return m;
 	}
-	
+
 	@Override
 	public Map getPageAccessChartData(List<FollowUsers> list) {
 		Map m = new HashMap();
 		for (int i = 0; i < list.size(); i++) {
-			String key = list.get(i).getPage_access();
-			if(key.contains("/rooms-tariff")) {
-				key = "View Room";
-			}
-			else if(key.contains("book room")) {
-				key = "Book Room";
-			}
-			else if(key.contains("cancel room")) {
-				key = "Cancel Room";
-			}
-			else if(key.contains("filter in rooms") || key.contains("/room-details") || key.contains("search in rooms") || key.contains("click image in rooms")) {
-				key = "Find Rooms";
-			}
-			else if(key.contains("filter in restaurant") || key.contains("/hotel-services") || key.contains("search in restaurant") || key.contains("click image in restaurant")) {
-				key = "View Restaurant";
-			}
-			else if(key.contains("feedback")) {
-				key = "Send Feedback";
-			}
-			else if(key.contains("click link /")) {
-				key = "View " + upperFirstChar(key.substring(12)) + " Page";
-			}
-			else if(key.contains("login")) {
-				key = "Login";
-			}
-			else if(key.contains("sign up")) {
-				key = "Sign Up";
-			}
-			else if(key.contains("register")) {
-				key = "Register";
-			}
-			else if(key.contains("/logout")) {
-				key = "Logout";
-			}
-			
+			String key = mergeKey(list.get(i).getPage_access());
 			if (m.containsKey(key)) {
 				m.replace(key, Integer.parseInt(m.get(key) + "") + 1);
 			} else {
@@ -139,6 +105,60 @@ public class UserDAOImpl implements UserDAO {
 			}
 		}
 		return m;
+	}
+
+	@Override
+	public Map getPageAccessChartDataByIP(String ipaddress, List<FollowUsers> list) {
+		Map m = new HashMap();
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getUser_ip_address().equals(ipaddress)) {
+				String key = mergeKey(list.get(i).getPage_access());
+				if (m.containsKey(key)) {
+					m.replace(key, Integer.parseInt(m.get(key) + "") + 1);
+				} else {
+					m.put(key, 1);
+				}
+			}
+		}
+		return m;
+	}
+
+	private String mergeKey(String key) {
+		if (key.contains("/rooms-tariff"))
+			key = "View Room";
+		else if (key.contains("book room"))
+			key = "Book Room";
+		else if (key.contains("cancel room"))
+			key = "Cancel Room";
+		else if (key.contains("filter in rooms") || key.contains("/room-details") || key.contains("search in rooms")
+				|| key.contains("click image in rooms"))
+			key = "Find Rooms";
+		else if (key.contains("filter in restaurant") || key.contains("/hotel-services")
+				|| key.contains("search in restaurant") || key.contains("click image in restaurant"))
+			key = "View Restaurant";
+		else if (key.contains("feedback"))
+			key = "Send Feedback";
+		else if (key.contains("click link /"))
+			key = "View " + upperFirstChar(key.substring(12)) + " Page";
+		else if (key.contains("login"))
+			key = "Login";
+		else if (key.contains("sign up"))
+			key = "Sign Up";
+		else if (key.contains("register"))
+			key = "Register";
+		else if (key.contains("/logout"))
+			key = "Logout";
+		return key;
+	}
+
+	@Override
+	public String getJSONPageAccess(Map m) {
+		StringBuilder jsonArray = new StringBuilder("[");
+		m.keySet().stream().forEach((key) -> {
+			jsonArray.append("{\"page_access\" : \"").append(key).append("\", \"visit_time\" : ").append(m.get(key))
+					.append(", \"color\" : \"#CD0D74\"},");
+		});
+		return jsonArray.append("]").toString();
 	}
 
 	@Override
@@ -171,9 +191,9 @@ public class UserDAOImpl implements UserDAO {
 
 	private int getTotalChartData(List<FollowUsers> list) {
 		int result = 0;
-		Map m = getMapFollowUsersCountry(list);
-		for (Object key : m.keySet()) {
-			result += Integer.parseInt(m.get(key) + "");
+		Map<String, Object> m = getMapFollowUsersCountry(list);
+		for (Map.Entry<String, Object> entry : m.entrySet()) {
+			result += Integer.parseInt(entry.getValue().toString());
 		}
 		return result;
 	}
@@ -182,10 +202,12 @@ public class UserDAOImpl implements UserDAO {
 	public List<ChartData> getListFollowUsersChartData(List<FollowUsers> list) {
 		List<ChartData> l = new ArrayList();
 		int totalChartData = getTotalChartData(list);
-		Map m = getMapFollowUsersCountry(list);
-		for (Object key : m.keySet()) {
-			int quantity = Integer.parseInt(m.get(key) + "");
-			l.add(new ChartData(key + "", quantity, round(quantity * 100.0 / totalChartData, 2)));
+		if (totalChartData == 0)
+			return l;
+		Map<String, Object> m = getMapFollowUsersCountry(list);
+		for (Map.Entry<String, Object> entry : m.entrySet()) {
+			int quantity = Integer.parseInt(entry.getValue().toString());
+			l.add(new ChartData(entry.getKey(), quantity, round(quantity * 100.0 / totalChartData, 2)));
 		}
 		return l;
 	}
@@ -195,8 +217,8 @@ public class UserDAOImpl implements UserDAO {
 		StringBuilder jsonArray = new StringBuilder("[");
 		Map m = getMapFollowUsersCountry(list);
 		m.keySet().stream().forEach((key) -> {
-			Object value = m.get(key);
-			jsonArray.append("{\"country\" : \"").append(key).append("\", \"visits\" : ").append(value).append("},");
+			jsonArray.append("{\"country\" : \"").append(key).append("\", \"visits\" : ").append(m.get(key))
+					.append("},");
 		});
 		return jsonArray.append("]").toString();
 	}

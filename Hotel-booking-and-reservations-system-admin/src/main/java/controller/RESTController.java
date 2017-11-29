@@ -14,7 +14,7 @@ import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import services.TestService;
+import services.APIService;
 import services.UserService;
 
 @RestController
@@ -22,7 +22,7 @@ import services.UserService;
 public class RESTController {
 	
 	@Autowired
-	private TestService testService;
+	private APIService testService;
 	
 	@Autowired
 	private UserService userService;
